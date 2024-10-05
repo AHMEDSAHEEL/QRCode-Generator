@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Generator</title>
+    <!-- Include the QRCode.js library from a CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Add some CSS for dark theme and styling -->
+    <style>
+        body {
+            background-color: rgb(250, 219, 77); /* Dark gray background */
+            color: #FFFFFF; /* White text */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #00ADB5; 
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            background-color: #121212; 
+            border: none;
+            border-radius: 4px;
+            color: white;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #00ADB5; 
+            border: none;
+            border-radius: 4px;
+            color: #FFFFFF;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #008C94; 
+        }
+        #qr-code {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .qr-card {
+            background-color: #393E46; 
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>QR Code Generator</h2>
+        <input type="text" id="text-input" placeholder="Enter a valid link or any text">
+        <button onclick="generateQR()">Generate QR Code</button>
+        <div id="qr-code"></div>
+    </div>
+
+    <script>
+        function generateQR() {
+            var text = document.getElementById("text-input").value.trim();
+    
+            var qrCodeContainer = document.getElementById("qr-code");
+            qrCodeContainer.innerHTML = "";
+    
+            if (text === "") {
+                alert("Enter a link or text");
+                return;
+            }
+    
+            var qrCard = document.createElement("div");
+            qrCard.className = "qr-card";
+            qrCodeContainer.appendChild(qrCard);
+    
+           
+            new QRCode(qrCard, {
+                text: text,
+                width: 200,
+                height: 200,
+                colorDark: "#222831", /* Dark color for QR code */
+                colorLight: "#EEEEEE", /* Light background for QR code */
+            });
+        }
+    </script>
+    
+</body>
+</html>
